@@ -8,13 +8,14 @@ app.use(morgan('dev'));
 
 app.use(express.json());  ////middleware
 
+// console.log("Muhib");
 app.use(express.static(`${__dirname}/public`))
 
 app.use((req,res,next)=>{
     req.requestTime=new Date().toISOString();
     next();
 })
-
+console.log(app.get('env'));
 //// ROutes
 const tourRouter=require('./Route/tourRoutes.js')
 const userRouter=require('./Route/userRoutes.js')

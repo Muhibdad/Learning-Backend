@@ -1,7 +1,6 @@
-const fs=require('fs')
-
+// const fs=require('fs')
 exports.getAllUsers=(req,res)=>{
-    console.log("HE")
+    // console.log("HE")
     res.status(500).json({
         status:"'error'",
         message:"'This route is not yet definded'"

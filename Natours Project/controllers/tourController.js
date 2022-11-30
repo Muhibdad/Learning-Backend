@@ -26,7 +26,7 @@ exports.checkBody=(req,res,next)=>{
 }
 
 exports.getAllTours=(req,res)=>{
-    console.log(req.requestTime);
+    // console.log(req.requestTime);
     res.status(200).json({
         status:"Success",
         results:tours.length,
@@ -38,10 +38,8 @@ exports.getAllTours=(req,res)=>{
 
 exports.getTour=(req,res)=>{
     const id=req.params.id*1;
-    const tour=tours.find(el=>{
-        return el.id==id
-     })
-    console.log(req.params);
+    const tour=tours.find(el=>el.id===id)
+    // console.log(req.params);
     
     res.status(200).json({
         status:"Success",
@@ -55,7 +53,8 @@ exports.addNewTour=(req,res)=>{
     // console.log(req.body);
 
     const newId=tours[tours.length-1].id+1;
-    newTour=Object.assign({id:newId}, req.body)
+    // eslint-disable-next-line prefer-object-spread
+    const newTour=Object.assign({id:newId}, req.body)
 
     // tours.push(newTour);
     fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours), (err)=>{
@@ -65,6 +64,7 @@ exports.addNewTour=(req,res)=>{
                 tour:newTour
             }
         })
+        // eslint-disable-next-line no-console
         if(err) return console.log("Could not write");
     })
 
